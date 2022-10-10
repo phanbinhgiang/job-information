@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import links from '../utils/link';
 import { toggleSidebar } from '../features/user/userSlice';
+import { changeLinkActive } from '../features/linkActive/linkActiveSlice';
 
 const NavLinks = ({ openSidebar = false }) => {
-  const [linkActive, setLinkActive] = useState(links[0].text);
+  const { linkActive } = useSelector((store) => store.linkActive);
   const dispatch = useDispatch();
 
   return (
@@ -19,7 +20,7 @@ const NavLinks = ({ openSidebar = false }) => {
             className={linkActive === text ? 'nav-link active' : 'nav-link'}
             key={id}
             onClick={() => {
-              setLinkActive(text);
+              dispatch(changeLinkActive(text));
               if (!openSidebar) {
                 dispatch(toggleSidebar());
               }

@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
-import customFetch from '../../utils/axios';
 import {
   getUserFromLocalStorage,
   addUserLocalStorage,
@@ -12,6 +11,7 @@ import {
   loginUserThunk,
   updateUserThunk,
 } from './userThunk';
+import { removeLinkActiveLocalStorage } from './../../utils/localStorage';
 
 const initialState = {
   isLoading: false,
@@ -51,6 +51,7 @@ const userSlice = createSlice({
       state.user = null;
       state.isSidebarOpen = false;
       removeUserLocalStorage();
+      removeLinkActiveLocalStorage();
     },
   },
   extraReducers: {

@@ -4,4 +4,18 @@ import BigSidebar from './BigSidebar';
 import Navbar from './Navbar';
 import SmallSidebar from './SmallSidebar';
 import FormRowSelect from './FormRowSelect';
-export { Logo, FormRow, SmallSidebar, Navbar, BigSidebar, FormRowSelect };
+import SearchContainer from './SearchContainer';
+import JobsContainer from './JobsContainer';
+import Loading from './Loading';
+
+export {
+  Logo,
+  FormRow,
+  SmallSidebar,
+  Navbar,
+  BigSidebar,
+  FormRowSelect,
+  SearchContainer,
+  JobsContainer,
+  Loading,
+};

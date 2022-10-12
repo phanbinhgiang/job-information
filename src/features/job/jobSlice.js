@@ -33,7 +33,7 @@ const jobSlice = createSlice({
       const { name, value } = payload;
       state[name] = value;
     },
-    clearValues: () => {
+    clearValues: (state) => {
       return {
         ...initialState,
         jobLocation: getUserFromLocalStorage()?.location || '',

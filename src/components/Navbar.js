@@ -6,6 +6,7 @@ import Wrapper from '../assets/wrappers/Navbar';
 import { toggleSidebar, logoutUser } from '../features/user/userSlice';
 import Logo from './Logo';
 import { setLinkDefault } from '../features/linkActive/linkActiveSlice';
+import { clearValues } from '../features/job/jobSlice';
 
 const Navbar = () => {
   const [showLogout, setShowLogout] = useState(false);
@@ -40,8 +41,9 @@ const Navbar = () => {
               type="button"
               className="dropdown-btn"
               onClick={() => {
-                dispatch(logoutUser());
+                dispatch(logoutUser('Logging out...'));
                 dispatch(setLinkDefault());
+                dispatch(clearValues());
               }}
             >
               logout

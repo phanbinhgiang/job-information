@@ -11,6 +11,8 @@ import Job from './Job';
 import JobInfo from './JobInfo';
 import StatsContainer from './StatsContainer';
 import ChartContainer from './ChartContainer';
+import BarChart from './BarChart';
+import AreaChart from './AreaChart';
 
 export {
   Logo,
@@ -26,4 +28,6 @@ export {
   JobInfo,
   StatsContainer,
   ChartContainer,
+  BarChart,
+  AreaChart,
 };

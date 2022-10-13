@@ -19,11 +19,7 @@ export const createJobThunk = async (url, job, thunkAPI) => {
 
 export const editJobThunk = async (url, job, thunkAPI) => {
   try {
-    const resp = await customFetch.patch(url, job, {
-      headers: {
-        authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
-      },
-    });
+    const resp = await customFetch.patch(url, job, authHeader(thunkAPI));
     thunkAPI.dispatch(clearValues());
     return resp.data;
   } catch (error) {

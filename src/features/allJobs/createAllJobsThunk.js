@@ -25,3 +25,13 @@ export const deleteJobThunk = async (jobId, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.response.data.msg);
   }
 };
+
+export const showStatsThunk = async (url, thunkAPI) => {
+  try {
+    const resp = await customFetch.get(url, authHeader(thunkAPI));
+    console.log(resp.data);
+    return resp.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data.msg);
+  }
+};

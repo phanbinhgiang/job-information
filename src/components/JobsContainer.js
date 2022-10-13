@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Wrapper from '../assets/wrappers/JobsContainer';
-import Job from './../pages/dashboard/Job';
+import Job from './Job';
 import { Loading } from '../components';
 import { getAllJobs } from '../features/allJobs/allJobsSlice';
 

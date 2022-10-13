@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 import customFetch from '../../utils/axios';
 import { getUserFromLocalStorage } from '../../utils/localStorage';
-import { createJobThunk } from './createJobThunk';
+import { createJobThunk, editJobThunk } from './createJobThunk';
 
 const initialState = {
   isLoading: false,
@@ -25,6 +25,13 @@ export const createJob = createAsyncThunk(
   },
 );
 
+export const editJob = createAsyncThunk(
+  'job/editJob',
+  async (job, thunkAPI) => {
+    return editJobThunk(`jobs/${job.editJobId}`, job, thunkAPI);
+  },
+);
+
 const jobSlice = createSlice({
   name: 'job',
   initialState,
@@ -33,11 +40,14 @@ const jobSlice = createSlice({
       const { name, value } = payload;
       state[name] = value;
     },
-    clearValues: (state) => {
+    clearValues: () => {
       return {
         ...initialState,
         jobLocation: getUserFromLocalStorage()?.location || '',
       };
+    },
+    setEditJob: (state, { payload }) => {
+      return { ...state, isEditing: true, ...payload };
     },
   },
   extraReducers: {
@@ -52,8 +62,19 @@ const jobSlice = createSlice({
       state.isLoading = false;
       toast.error(payload);
     },
+    [editJob.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [editJob.fulfilled]: (state) => {
+      state.isLoading = false;
+      toast.success('Job Modified');
+    },
+    [editJob.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    },
   },
 });
 
-export const { handleChange, clearValues } = jobSlice.actions;
+export const { handleChange, clearValues, setEditJob } = jobSlice.actions;
 export default jobSlice.reducer;

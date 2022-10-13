@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import Wrapper from '../../assets/wrappers/DashboardFormPage';
 import { FormRowSelect } from './../../components';
 import { handleChange, clearValues } from '../../features/job/jobSlice';
-import { createJob } from '../../features/job/jobSlice';
+import { createJob, editJob } from '../../features/job/jobSlice';
 
 const AddJob = () => {
   const {
@@ -29,8 +29,16 @@ const AddJob = () => {
     e.preventDefault();
     if (!position || !company || !jobLocation || !status || !jobType) {
       toast.error('Please fill out all fields');
+      return;
     }
-    dispatch(createJob({ position, company, jobLocation, jobType, status }));
+
+    if (!isEditing) {
+      dispatch(createJob({ position, company, jobLocation, jobType, status }));
+    } else {
+      dispatch(
+        editJob({ position, company, jobLocation, jobType, status, editJobId }),
+      );
+    }
   };
 
   const handleJobInput = (e) => {
@@ -40,7 +48,9 @@ const AddJob = () => {
   };
 
   useEffect(() => {
-    dispatch(handleChange({ name: 'jobLocation', value: user.location }));
+    if (!isEditing) {
+      dispatch(handleChange({ name: 'jobLocation', value: user.location }));
+    }
   }, []);
 
   return (

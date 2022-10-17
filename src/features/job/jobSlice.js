@@ -1,9 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
-import customFetch from '../../utils/axios';
 import { getUserFromLocalStorage } from '../../utils/localStorage';
-import { createJobThunk, editJobThunk } from './createJobThunk';
+import { createJobThunk, editJobThunk } from './jobThunk';
 
 const initialState = {
   isLoading: false,

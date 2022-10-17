@@ -17,9 +17,6 @@ const SearchContainer = () => {
   const handleClearFilter = () => {
     dispatch(clearFilters());
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
   return (
     <Wrapper>
       <form action="" className="form">

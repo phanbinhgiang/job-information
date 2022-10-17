@@ -1,7 +1,7 @@
-import customFetch from './../../utils/axios';
+import customFetch from '../../utils/axios';
 import { getAllJobs } from './allJobsSlice';
 import { hideLoading } from './allJobsSlice';
-import authHeader from './../../utils/authHeader';
+import authHeader from '../../utils/authHeader';
 
 export const getAllJobsThunk = async (url, thunkAPI) => {
   try {

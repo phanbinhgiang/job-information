@@ -6,7 +6,6 @@ import Wrapper from '../assets/wrappers/Navbar';
 import { toggleSidebar, clearStore } from '../features/user/userSlice';
 import Logo from './Logo';
 import { setLinkDefault } from '../features/linkActive/linkActiveSlice';
-import { clearValues } from '../features/job/jobSlice';
 
 const Navbar = () => {
   const [showLogout, setShowLogout] = useState(false);
